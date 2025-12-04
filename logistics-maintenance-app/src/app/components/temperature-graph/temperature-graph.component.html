@@ -1,0 +1,9 @@
+<div class="graph-container">
+    <h2>Real-time Temperature</h2>
+    <div class="canvas-wrapper">
+        <canvas #temperatureChart></canvas>
+    </div>
+    <div class="status" [class.connected]="isConnected">
+        {{ isConnected ? 'Connected to live feed' : 'Connecting...' }}
+    </div>
+</div>

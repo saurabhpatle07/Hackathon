@@ -1,0 +1,9 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+    <app-maintenance-input></app-maintenance-input>
+    <app-temperature-graph *ngIf="authService.isAdmin()"></app-temperature-graph>
+    <app-calendar *ngIf="authService.isAdmin()"></app-calendar>
+</div>

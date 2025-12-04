@@ -1,0 +1,66 @@
+<div class="maintenance-container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Predictive Maintenance Query</h2>
+            <p>Enter your maintenance query or equipment details below</p>
+        </div>
+
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()" class="input-form">
+                <div class="form-group">
+                    <label for="maintenanceInput">Maintenance Query</label>
+                    <textarea id="maintenanceInput" [(ngModel)]="inputText" name="inputText"
+                        placeholder="E.g., Check engine oil levels for truck #453, predict wear on conveyor belt system..."
+                        rows="4" [disabled]="isLoading" class="form-input"></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" [disabled]="isLoading || !inputText.trim()">
+                        <span *ngIf="!isLoading">Submit Query</span>
+                        <span *ngIf="isLoading" class="loading-spinner">
+                            <span class="spinner"></span>
+                            Processing...
+                        </span>
+                    </button>
+
+                    <button type="button" class="btn btn-secondary" (click)="clearForm()" [disabled]="isLoading">
+                        Clear
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Response -->
+            <div *ngIf="response" class="response-card success">
+                <div class="response-header">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <h3>Response Received</h3>
+                </div>
+                <div class="response-content">
+                    <p><strong>Status:</strong> {{ response.status }}</p>
+                    <p><strong>Message:</strong> {{ response.message }}</p>
+                    <pre *ngIf="response.data">{{ response.data | json }}</pre>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="error" class="response-card error">
+                <div class="response-header">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <h3>Error</h3>
+                </div>
+                <div class="response-content">
+                    <p>{{ error }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

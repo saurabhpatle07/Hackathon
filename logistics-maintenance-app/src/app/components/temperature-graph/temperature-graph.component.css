@@ -1,0 +1,28 @@
+.graph-container {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.canvas-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.status.connected {
+    color: #2ecc71;
+}
